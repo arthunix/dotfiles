@@ -76,7 +76,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 path+=('/home/arthur/.emacs.d/bin')
-export PATH="/home/arthur/.config/emacs/bin:$PATH"
+path+=('/home/arthur/.local/bin')
+export PATH="/home/arthur/.config/emacs/bin:/home/arthur/.local/bin:$PATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
