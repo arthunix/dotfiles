@@ -1,0 +1,13 @@
+#!/bin/bash
+
+sudo dnf group install "C Development Tools and Libraries" "Development Tools" -y
+sudo dnf install gcc llvm clang make bash binutils bison bison-devel flex flex-devel -y
+sudo dnf install dwarves libdwarves1 libdwarves1-devel util-linux kmod kmod-devel bc -y
+sudo dnf install e2fsprogs e2fsprogs-devel e2fsprogs-libs jfsutils xfsprogs xfsprogs-devel -y
+sudo dnf install squashfs-tools btrfs-progs btrfs-progs-devel pcmciautils quota quota-devel -y
+sudo dnf install ppp ppp-devel nfs-utils mcelog iptables openssl openssl-devel -y
+sudo dnf install sphinx cpio emacs elfutils-libelf-devel python3 ncurses-devel -y
+sudo dnf install qemu-system-x86 qemu-system-arm kernel-devel kernel-headers kernel-doc -y
+sudo dnf install kernel-tools kernel-tools-libs kernel-tools-libs-devel kernel-core kernel-modules kernel-headers -y
+sudo dnf install binutils-devel binutils flex flex-devel bison bison-devel ncurses ncurses-devel ncurses-libs -y
+sudo dnf install glibc-devel glibc-devel.i686 elfutils-libelf-devel elfutils-libelf elfutils-libelf-devel.i686 elfutils-libelf.i686 -y
