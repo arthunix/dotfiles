@@ -6,7 +6,7 @@ sudo apt upgrade -y
 sudo apt install build-essential cmake python2 python3 git -y
 sudo apt install vim neovim clang-12 libclang-dev zsh curl -y
 sudo apt install manpages-dev man-db manpages-posix-dev -y
-sudo apt pavucontrol gnome-tweaks gnome-shell-extension-prefs -y
+sudo apt install pavucontrol gnome-tweaks gnome-shell-extension-prefs -y
 sudo apt install gtk2-engines-murrine gtk2-engines-pixbuf -y
 
 sudo apt install ca-certificates curl gnupg -y
