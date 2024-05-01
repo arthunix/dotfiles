@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="gentoo"
+ZSH_THEME="alanpeabody"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -76,6 +76,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 path+=('/home/arthur/.emacs.d/bin')
+path+=('/home/arthur/.emacs.d/bin')
 path+=('/home/arthur/.local/bin')
 export PATH="/home/arthur/.config/emacs/bin:/home/arthur/.local/bin:$PATH"
 
@@ -84,9 +85,9 @@ export PATH="/home/arthur/.config/emacs/bin:/home/arthur/.local/bin:$PATH"
 
 #Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-    export EDITOR='emacs'
+    export EDITOR='nano'
 else
-    export EDITOR='emacs'
+    export EDITOR='nano'
 fi
 
 # Compilation flags
@@ -102,3 +103,4 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cls="clear"
 alias config='/usr/bin/git --git-dir=/home/arthur/.cfg/ --work-tree=/home/arthur'
+alias aws='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws public.ecr.aws/aws-cli/aws-cli'
