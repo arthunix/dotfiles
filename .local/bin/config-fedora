@@ -1,26 +1,38 @@
 #!/bin/bash
 
+## First update and upgrade the whole system
 sudo dnf check-update -y
 sudo dnf update --refresh -y
  
-#install basic tools
+## Install basic and essential tools
 sudo dnf install python2 python3 chromium pavucontrol code git vim python3-neovim neovim emacs neofetch zsh -y
 sudo dnf install llvm clang clang-devel clang-libs perl perl-devel gdb rust rustc cmake util-linux-user sysstat -y
 sudo dnf install qemu-system-x86 qemu-system-arm kernel-devel kernel-headers kernel-doc kernel-tools flatpak -y
 sudo dnf install kernel-tools-libs kernel-tools-libs-devel kernel-core kernel-modules ncurses-devel kmod kmod-devel -y
 sudo dnf install libbpf-devel glibc-devel elfutils-libelf-devel elfutils-libelf flex flex-devel bison bison-devel -y
+sudo dnf group install --with-optional virtualization -y
 sudo dnf group install "C Development Tools and Libraries" "Development Tools" -y
 sudo dnf install lame lame-devel gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav -y
 sudo dnf group install "Multimedia" -y
-#sudo dnf group install "Security Lab" -y
+# sudo dnf group install "Security Lab" -y
 
+## Install doom emacs framework
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
 ~/.emacs.d/bin/doom sync
 
+## Install vscode repository and package
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+dnf check-update
+sudo dnf install code
+
+## Install ohmyzsh and ohmybash frameworks
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
+## Install docker engine and tools
 sudo dnf remove docker \
                   docker-client \
                   docker-client-latest \
@@ -42,3 +54,10 @@ sudo usermod -aG docker $USER
 
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
+
+## Clone and deploy dotfiles configuration
+# echo ".cfg" >> .gitignore
+git clone --bare git@github.com:arthunix/dotfiles.git $HOME/.cfg
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+config config --local status.showUntrackedFiles no
+config checkout -f
